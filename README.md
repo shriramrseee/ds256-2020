@@ -20,6 +20,13 @@ spark-submit --master yarn --deploy-mode cluster --driver-memory 512m \
 /user/ds256/twitter-tweets/tweets-999_1478472260018.txt
 ```
 
+## YARN logs
+
+```
+yarn logs --applicationId application_1580462928077_0009
+```
+Replace ```application_1580462928077_0009``` with your YARN application ID
+
 ## Twitter Data
 
 [1] https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/tweet-object.html
