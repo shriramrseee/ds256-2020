@@ -15,7 +15,6 @@ public class Count {
     public static void main(String[] args) throws IOException {
 
         String inputFile = args[0]; // Should be some file on HDFS
-        String outputFile = args[1]; // Should be some file on HDFS
 
         SparkConf sparkConf = new SparkConf().setAppName("Count");
         JavaSparkContext sc = new JavaSparkContext(sparkConf);
@@ -30,13 +29,8 @@ public class Count {
         // Get Hash Count for each tweet
         long noOfTweets = twitterData.count();
 
-        // Save file
-        Configuration conf = new Configuration();
-        FileSystem fs = FileSystem.get(URI.create(outputFile), conf);
-        FSDataOutputStream out = fs.create(new Path(outputFile));
-        out.writeUTF("Tweet Count: ");
-        out.writeLong(noOfTweets);
-        out.close();
+        // Print
+        System.out.println("Count: " + noOfTweets);
 
         sc.stop();
         sc.close();
