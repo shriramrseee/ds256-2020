@@ -23,6 +23,7 @@ spark-submit --master yarn --deploy-mode cluster --driver-memory 512m \
 ## Twitter Data
 
 [1] https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/tweet-object.html
+
 [2] https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/user-object
 
 
