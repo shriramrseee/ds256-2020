@@ -10,7 +10,7 @@ import org.apache.spark.api.java.JavaRDD;
 import java.io.IOException;
 import java.net.URI;
 
-public class Count {
+public class CountToFile {
 
     public static void main(String[] args) throws IOException {
 
