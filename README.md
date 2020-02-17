@@ -11,6 +11,12 @@ spark-submit --class in.ds256.twitter.Count --master yarn --num-executors 2 --dr
 /user/ds256/twitter-tweets/tweets-999_1478472260018.txt
 ```
 
+```
+spark-submit --class in.ds256.twitter.CountToFile --master yarn --num-executors 2 --driver-memory 512m \
+--executor-memory 2G --executor-cores 4 /home/shriramr/ds256-2020/java/target/twitter-1.0-SNAPSHOT-jar-with-dependencies.jar \
+/user/ds256/twitter-tweets/tweets-999_1478472260018.txt output
+```
+
 ## Python Submission
 
 ```
