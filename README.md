@@ -29,7 +29,7 @@ spark-submit --master yarn --deploy-mode cluster --driver-memory 512m \
 ```
 spark-submit --master yarn --deploy-mode cluster --driver-memory 512m \
 --num-executors 2 --executor-cores 4 --executor-memory 2G  \
-/home/shriramr/ds256-2020/python/Count.py \
+/home/shriramr/ds256-2020/python/CountToFile.py \
 /user/ds256/twitter-tweets/tweets-999_1478472260018.txt /user/shriramr/output
 ```
 
