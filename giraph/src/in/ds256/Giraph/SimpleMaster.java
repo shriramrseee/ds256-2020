@@ -18,7 +18,7 @@ public class SimpleMaster extends DefaultMasterCompute {
     public void compute() {
         Long total = ((LongWritable) getAggregatedValue(SMC_AGG)).get();
         LOG.info("Hello, the total is " + total);
-        if (getSuperstep() == 0) {
+        if (getSuperstep() == 1) {
             haltComputation();
         }
     }

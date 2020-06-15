@@ -1,36 +1,43 @@
 # ds256-2020
 Course Repository for DS 256 (Jan 2020)
 
-## Java Build and Submission
+## Giraph Build
 
-Build the Java code by runnning ```mvn package``` inside the java folder.
+Build the Java code by runnning ```mvn clean package``` inside the giraph folder. In order to run the examples, you will need Hadoop-3.1.1 running in distributed mode or pseudo-distributed mode along with YARN.
  
 ```
-spark-submit --class in.ds256.twitter.Count --master yarn --num-executors 2 --driver-memory 512m \
---executor-memory 2G --executor-cores 4 /home/shriramr/ds256-2020/java/target/twitter-1.0-SNAPSHOT-jar-with-dependencies.jar \
-/user/ds256/twitter-tweets/tweets-999_1478472260018.txt
+hadoop jar Giraph-Tutorial-1.0-SNAPSHOT-jar-with-dependencies.jar org.apache.giraph.GiraphRunner \
+in.ds256.Giraph.OutDegreeComputation \
+-yj Giraph-Tutorial-1.0-SNAPSHOT-jar-with-dependencies.jar \
+-yh 2000 \
+-vif org.apache.giraph.io.formats.JsonLongDoubleFloatDoubleVertexInputFormat \
+-vip tiny_graph.txt \
+-vof org.apache.giraph.io.formats.IdWithValueTextOutputFormat \
+-op sample_output -w 1
 ```
 
 ```
-spark-submit --class in.ds256.twitter.CountToFile --master yarn --num-executors 2 --driver-memory 512m \
---executor-memory 2G --executor-cores 4 /home/shriramr/ds256-2020/java/target/twitter-1.0-SNAPSHOT-jar-with-dependencies.jar \
-/user/ds256/twitter-tweets/tweets-999_1478472260018.txt /user/shriramr/output
-```
-
-## Python Submission
-
-```
-spark-submit --master yarn --deploy-mode cluster --driver-memory 512m \
---num-executors 2 --executor-cores 4 --executor-memory 2G  \
-/home/shriramr/ds256-2020/python/Count.py \
-/user/ds256/twitter-tweets/tweets-999_1478472260018.txt
+hadoop jar Giraph-Tutorial-1.0-SNAPSHOT-jar-with-dependencies.jar org.apache.giraph.GiraphRunner \
+in.ds256.Giraph.SSSPComputation \
+-yj Giraph-Tutorial-1.0-SNAPSHOT-jar-with-dependencies.jar \
+-yh 2000 \
+-vif org.apache.giraph.io.formats.JsonLongDoubleFloatDoubleVertexInputFormat \
+-vip tiny_graph.txt \
+-vof org.apache.giraph.io.formats.IdWithValueTextOutputFormat \
+-op sample_output -w 1 \
+-ca SimpleShortestPathsVertex.sourceId=0
 ```
 
 ```
-spark-submit --master yarn --deploy-mode cluster --driver-memory 512m \
---num-executors 2 --executor-cores 4 --executor-memory 2G  \
-/home/shriramr/ds256-2020/python/CountToFile.py \
-/user/ds256/twitter-tweets/tweets-999_1478472260018.txt /user/shriramr/output
+hadoop jar Giraph-Tutorial-1.0-SNAPSHOT-jar-with-dependencies.jar org.apache.giraph.GiraphRunner \
+in.ds256.Giraph.SimpleMasterComputation \
+-mc in.ds256.Giraph.SimpleMaster \
+-yj Giraph-Tutorial-1.0-SNAPSHOT-jar-with-dependencies.jar \
+-yh 2000 \
+-vif org.apache.giraph.io.formats.JsonLongDoubleFloatDoubleVertexInputFormat \
+-vip tiny_graph.txt \
+-vof org.apache.giraph.io.formats.IdWithValueTextOutputFormat \
+-op sample_output -w 1
 ```
 
 ## YARN logs
@@ -40,11 +47,17 @@ yarn logs --applicationId application_1580462928077_0009
 ```
 Replace ```application_1580462928077_0009``` with your YARN application ID
 
-## Twitter Data
+## Useful Links
 
-[1] https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/tweet-object.html
+[1] https://giraph.apache.org/quick_start.html
 
-[2] https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/user-object
+[2] https://giraph.apache.org/intro.html
+
+[3] https://giraph.apache.org/aggregators.html
+
+[4] https://giraph.apache.org/options.html
+
+[5] https://github.com/apache/giraph
 
 
 
